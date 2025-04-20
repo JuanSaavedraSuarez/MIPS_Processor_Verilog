@@ -28,7 +28,6 @@ module alu(
     output  reg             zero
     );
 
-
     always@(*)
     begin
         case(alu_op)
