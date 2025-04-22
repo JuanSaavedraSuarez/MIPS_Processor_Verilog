@@ -37,6 +37,8 @@ module ctrl_unit(
 
     reg [3:0]       state,          // Current state for FSM
                     nextstate;      // Holds next state for FSM
+    
+    reg [2:0]       exec;           // Execution flag for multi-clock cycle instructions
 
     localparam  RESET   = 4'b0000,
                 FETCH   = 4'b0001,
@@ -58,5 +60,19 @@ module ctrl_unit(
             state = RESET
         else
             state = nextstate
+
+    always@(state)
+        casez(state,exec)
+            {RESET,?}:
+            FETCH:
+            DECODE:
+            AND:
+            OR:
+            ADD:
+            XOR:
+            SUB:            
+            SLT:
+            ERROR:
+        endcase
 
 endmodule
