@@ -11,6 +11,52 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module ctrl_unit(
+    input               clk,
+    input               rst,
+    input       [5:0]   ctrl_op,
+    output reg  [5:0]   alu_op,     // Opcode for ALU
+    output reg          alu_oe,     // High: ALU outputs to CPU bus
+    output reg          rf_en,      // High: reg file inputs data from CPU bus
+    output reg          rf_oe,      // High: reg file outputs data to CPU bus
+    output reg          rd_or_rt,   // High: use Rt for dest reg, Low: use Rd
+    output reg          rs_or_rt,   // High: use Rt for source reg, Low: use Rd
+    output reg          a_en,       // High: Reg A inputs from CPU bus
+    output reg          b_en,       // High: Reg B inputs from CPU bus
+    output reg          seu_oe,     // High: SEU outputs to CPU bus
+    output reg          pc_en,      // High: PC inputs from CPU bus
+    output reg          pc_oe,      // High: PC outputs to CPU bus
+    output reg          ir_en,      // High: IR inputs from CPU bus
+    output reg          mar_en,     // High: MAR inputs from CPU bus
+    output reg          mdr_en,     // High: MDR inputs from CPU bus
+    output reg          mdr_oe,     // High: MDR outputs to CPU bus
     );
+
+    /***************************************************************************
+    * States for FSM
+    ***************************************************************************/
+
+    reg [3:0]       state,          // Current state for FSM
+                    nextstate;      // Holds next state for FSM
+
+    localparam  RESET   = 4'b0000,
+                FETCH   = 4'b0001,
+                DECODE  = 4'b0010,
+                AND     = 4'b0011,
+                OR      = 4'b0100,
+                ADD     = 4'b0101,
+                XOR     = 4'b0110,
+                SUB     = 4'b0111,
+                SLT     = 4'b1000,
+                ERROR   = 4'b1111;
+
+    /***************************************************************************
+    * Sequential logic for FSM
+    ***************************************************************************/
+    
+    always@(posedge clk or posedge rst)
+        if(rst)
+            state = RESET
+        else
+            state = nextstate
 
 endmodule
