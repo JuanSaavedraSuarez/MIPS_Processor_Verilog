@@ -62,17 +62,137 @@ module ctrl_unit(
             state = nextstate
 
     always@(state)
-        casez(state,exec)
-            {RESET,?}:
-            FETCH:
-            DECODE:
-            AND:
-            OR:
-            ADD:
-            XOR:
-            SUB:            
-            SLT:
-            ERROR:
+        casez({state,exec})
+            7'b0000_000: // RESET 
+            begin
+                alu_op      = 6'b0;     alu_oe      = 1'b0;
+                rf_en       = 1'b0;     rf_oe       = 1'b0;
+                rd_or_rt    = 1'b0;     rs_or_rt    = 1'b0;
+                a_en        = 1'b0;     b_en        = 1'b0;
+                seu_oe      = 1'b0;
+                pc_en       = 1'b0;     pc_oe       = 1'b0;
+                ir_en       = 1'b0;
+                mar_en      = 1'b0;     mdr_en      = 1'b0;   
+                mdr_oe      = 1'b0;
+                nextstate = FETCH;
+            end; 
+            7'b0001_000: // FETCH
+            begin 
+                alu_op      = 6'b0;     alu_oe      = 1'b0;
+                rf_en       = 1'b0;     rf_oe       = 1'b0;
+                rd_or_rt    = 1'b0;     rs_or_rt    = 1'b0;
+                a_en        = 1'b0;     b_en        = 1'b0;
+                seu_oe      = 1'b0;
+                pc_en       = 1'b0;     pc_oe       = 1'b0;
+                ir_en       = 1'b0;
+                mar_en      = 1'b0;     mdr_en      = 1'b0;   
+                mdr_oe      = 1'b0;
+                nextstate = FETCH;
+            end;
+            7'b0010_000: // DECODE 
+            begin 
+                alu_op      = 6'b0;     alu_oe      = 1'b0;
+                rf_en       = 1'b0;     rf_oe       = 1'b0;
+                rd_or_rt    = 1'b0;     rs_or_rt    = 1'b0;
+                a_en        = 1'b0;     b_en        = 1'b0;
+                seu_oe      = 1'b0;
+                pc_en       = 1'b0;     pc_oe       = 1'b0;
+                ir_en       = 1'b0;
+                mar_en      = 1'b0;     mdr_en      = 1'b0;   
+                mdr_oe      = 1'b0;
+                nextstate = FETCH;
+            end;
+            7'b0011_000: // AND 
+            begin 
+                alu_op      = 6'b0;     alu_oe      = 1'b0;
+                rf_en       = 1'b0;     rf_oe       = 1'b0;
+                rd_or_rt    = 1'b0;     rs_or_rt    = 1'b0;
+                a_en        = 1'b0;     b_en        = 1'b0;
+                seu_oe      = 1'b0;
+                pc_en       = 1'b0;     pc_oe       = 1'b0;
+                ir_en       = 1'b0;
+                mar_en      = 1'b0;     mdr_en      = 1'b0;   
+                mdr_oe      = 1'b0;
+                nextstate = FETCH;
+            end;
+            7'b0100_000: // OR 
+            begin 
+                alu_op      = 6'b0;     alu_oe      = 1'b0;
+                rf_en       = 1'b0;     rf_oe       = 1'b0;
+                rd_or_rt    = 1'b0;     rs_or_rt    = 1'b0;
+                a_en        = 1'b0;     b_en        = 1'b0;
+                seu_oe      = 1'b0;
+                pc_en       = 1'b0;     pc_oe       = 1'b0;
+                ir_en       = 1'b0;
+                mar_en      = 1'b0;     mdr_en      = 1'b0;   
+                mdr_oe      = 1'b0;
+                nextstate = FETCH;
+            end; 
+            7'b0101_000: // ADD
+            begin 
+                alu_op      = 6'b0;     alu_oe      = 1'b0;
+                rf_en       = 1'b0;     rf_oe       = 1'b0;
+                rd_or_rt    = 1'b0;     rs_or_rt    = 1'b0;
+                a_en        = 1'b0;     b_en        = 1'b0;
+                seu_oe      = 1'b0;
+                pc_en       = 1'b0;     pc_oe       = 1'b0;
+                ir_en       = 1'b0;
+                mar_en      = 1'b0;     mdr_en      = 1'b0;   
+                mdr_oe      = 1'b0;
+                nextstate = FETCH;
+            end;
+            7'b0110_000: // XOR
+            begin 
+                alu_op      = 6'b0;     alu_oe      = 1'b0;
+                rf_en       = 1'b0;     rf_oe       = 1'b0;
+                rd_or_rt    = 1'b0;     rs_or_rt    = 1'b0;
+                a_en        = 1'b0;     b_en        = 1'b0;
+                seu_oe      = 1'b0;
+                pc_en       = 1'b0;     pc_oe       = 1'b0;
+                ir_en       = 1'b0;
+                mar_en      = 1'b0;     mdr_en      = 1'b0;   
+                mdr_oe      = 1'b0;
+                nextstate = FETCH;
+            end;
+            7'b0111_000: // SUB 
+            begin 
+                alu_op      = 6'b0;     alu_oe      = 1'b0;
+                rf_en       = 1'b0;     rf_oe       = 1'b0;
+                rd_or_rt    = 1'b0;     rs_or_rt    = 1'b0;
+                a_en        = 1'b0;     b_en        = 1'b0;
+                seu_oe      = 1'b0;
+                pc_en       = 1'b0;     pc_oe       = 1'b0;
+                ir_en       = 1'b0;
+                mar_en      = 1'b0;     mdr_en      = 1'b0;   
+                mdr_oe      = 1'b0;
+                nextstate = FETCH;
+            end;
+            7'b1000_000: // SLT 
+            begin 
+                alu_op      = 6'b0;     alu_oe      = 1'b0;
+                rf_en       = 1'b0;     rf_oe       = 1'b0;
+                rd_or_rt    = 1'b0;     rs_or_rt    = 1'b0;
+                a_en        = 1'b0;     b_en        = 1'b0;
+                seu_oe      = 1'b0;
+                pc_en       = 1'b0;     pc_oe       = 1'b0;
+                ir_en       = 1'b0;
+                mar_en      = 1'b0;     mdr_en      = 1'b0;   
+                mdr_oe      = 1'b0;
+                nextstate = FETCH;
+            end;
+            7'b1111_000: // ERROR
+            begin 
+                alu_op      = 6'b0;     alu_oe      = 1'b0;
+                rf_en       = 1'b0;     rf_oe       = 1'b0;
+                rd_or_rt    = 1'b0;     rs_or_rt    = 1'b0;
+                a_en        = 1'b0;     b_en        = 1'b0;
+                seu_oe      = 1'b0;
+                pc_en       = 1'b0;     pc_oe       = 1'b0;
+                ir_en       = 1'b0;
+                mar_en      = 1'b0;     mdr_en      = 1'b0;   
+                mdr_oe      = 1'b0;
+                nextstate = FETCH;
+            end;
         endcase
-
+        
 endmodule
